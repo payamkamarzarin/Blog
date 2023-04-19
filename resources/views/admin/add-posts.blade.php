@@ -296,7 +296,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">متن</label>
-                    <textarea id="editor1" name="editor1" rows="10" cols="80">این ویرایشگر راست چین و فارسی شده و تنظیمات آن به صورت اختصاصی تنظیم شده است...</textarea>
+                    <textarea id="editor1" name="editor1" rows="10" cols="80"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="sel1">دسته بندی</label>
