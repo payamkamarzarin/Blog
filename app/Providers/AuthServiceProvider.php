@@ -23,7 +23,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('edit-user',function(){
+        Gate::define('edit-user',function($user){
+            dd($user);
             return true;
         });
         

@@ -1,4 +1,5 @@
 @extends('admin.layouts.master')
+
 @section('header')
 <header class="main-header">
   <!-- Logo -->
@@ -6,7 +7,7 @@
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini">پنل</span>
     <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>افزودن نوشته ها</b></span>
+    <span class="logo-lg"><b>نمایش نوشته ها</b></span>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top">
@@ -224,7 +225,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="/admin/img/user2-160x160.jpg" class="user-image" alt="User Image">
-            <span class="hidden-xs">پیام کمرزرین</span>
+            <span class="hidden-xs">{{ $username }}</span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
@@ -232,7 +233,7 @@
               <img src="/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
               <p style="color: black;">
-                پیام کمرزرین
+                {{ $username }}
                 <small>مدیریت کل سایت</small>
               </p>
             </li>
@@ -287,36 +288,47 @@
   </section>
 
   <!-- Main content -->
-    <section class="content container-fluid">
-        <div class="col-md-12">
-            <form action="" method="post">
-                <div class="form-group">
-                    <label for="">عنوان</label>
-                    <input type="text" class="form-control" name="" id="">
-                </div>
-                <div class="form-group">
-                    <label for="">متن</label>
-                    <textarea id="editor1" name="editor1" rows="10" cols="80"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="sel1">دسته بندی</label>
-                    <select class="form-control" id="sel1">
-                      <option>برنامه نویسی</option>
-                      <option>گرافیک</option>
-                      <option>شبکه</option>
-                      <option>هوش مصنوعی</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="">آپلود عکس</label>
-                    <input type="file" class="form-control" name="" id="">
-                </div>
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary btn-block">ارسال نوشته</button>
-                </div>
-            </form>
-        </div>
-    </section>
+  <section class="content container-fluid">
+
+    <div class="container">
+      <p>لیست پست های تایید شده</p>  
+      <input class="form-control" id="myInput" type="text" placeholder="Search..">
+      <br>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>شماره کاربر</th>
+            <th>شماره پست</th>
+            <th>عنوان</th>
+            <th>متن</th>
+            <th>شغل</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+          @foreach ($posts as $posts)
+          <tr>
+            <td>{{ $posts->id }}</td>
+            <td>{{ $posts->user_id }}</td>
+            <td>{{ $posts->title }}</td>
+            <td>{{ $posts->text }}</td>
+            <td>{{ $posts->slug }}</td>
+            <td>
+              <form action="/admin/blog/{{ $posts->id }}" method="post">
+                @csrf
+                @method('delete')
+                <button class="btn btn-danger">delete</button>
+              </form>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+      
+      <p>Note that we start the search in tbody, to prevent filtering the table headers.</p>
+    </div>
+
+  </section>
 </div>
 @endsection
 

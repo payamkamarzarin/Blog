@@ -225,7 +225,9 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="/admin/img/user2-160x160.jpg" class="user-image" alt="User Image">
-            <span class="hidden-xs">پیام کمرزرین</span>
+
+            <span class="hidden-xs">{{ $username }}</span>
+
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
@@ -258,7 +260,7 @@
                 <a href="#" class="btn btn-default btn-flat">پروفایل</a>
               </div>
               <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat">خروج</a>
+                <a href="{{ route('logout') }}" class="btn btn-default btn-flat">خروج</a>
               </div>
             </li>
           </ul>

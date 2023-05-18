@@ -290,9 +290,50 @@
   <!-- Main content -->
   <section class="content container-fluid">
 
-    <!--------------------------
-      | Your Page Content Here |
-      -------------------------->
+    <div class="container">
+      <p>لیست پست های تایید شده</p>  
+      <input class="form-control" id="myInput" type="text" placeholder="Search..">
+      <br>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>شماره کاربر</th>
+            <th>نام: </th>
+            <th>نام خانوادگی: </th>
+            <th>نام پدر: </th>
+            <th>کد ملی: </th>
+            <th>شماره همراه: </th>
+            <th>ایمیل: </th>
+            <th>کد پستی: </th>
+            <th>آدرس: </th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+          @foreach ($user as $user)
+          <tr>
+            <td>{{ $user->id }}</td>
+            <td>{{ $user->firstname }}</td>
+            <td>{{ $user->lastname }}</td>
+            <td>{{ $user->fathername }}</td>
+            <td>{{ $user->nationalcode }}</td>
+            <td>{{ $user->phonenumber }}</td>
+            <td>{{ $user->email }}</td>
+            <td>{{ $user->postalcode }}</td>
+            <td>{{ $user->address }}</td>
+            <td>
+              <form action="/admin/user-management/{{ $user->id }}" method="post">
+                @csrf
+                @method('delete')
+                <button class="btn btn-danger">delete</button>
+              </form>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+      
+      <p>Note that we start the search in tbody, to prevent filtering the table headers.</p>
+    </div>
 
   </section>
 </div>

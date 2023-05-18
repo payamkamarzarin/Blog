@@ -24,7 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-right info">
-          <p>پیام کمرزرین</p>
+          <p>{{ $username }}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> آنلاین</a>
         </div>
